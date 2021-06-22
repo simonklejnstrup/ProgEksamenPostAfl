@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>KommuneStatistik</title>
+
+    <link rel="stylesheet" th:href="@{/MyCSS.css}" href="../static/MyCSS.css">
+</head>
+<body>
+<div class="topnav">
+    <a th:href="@{'/'}"class="backButton">←</a>
+</div>
+
+<h1>Smittetryk i kommunerne</h1>
+
+<table id="sogneTable">
+    <tr>
+        <th>Kommune</th>
+        <th>Antal Sogne</th>
+        <th>Gennemsnitlig incidens</th>
+
+    </tr>
+    <tr th:each="kommune : ${kommuner}">
+        <td th:text="${kommune.navn}">Navn</td>
+        <td th:text="${kommune.antalSogne}">Antal Sogne</td>
+        <td th:text="${kommune.gennemsnitligIncidens}">Gennemsnitlig incidens </td>
+
+    </tr>
+
+
+</table>
+
+
+
+</body>
+</html>

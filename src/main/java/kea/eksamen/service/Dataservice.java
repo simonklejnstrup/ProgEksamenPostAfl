@@ -48,14 +48,15 @@ public class Dataservice {
         List<Kommune> kommuneList = kommuneRepository.findAll();
 
         for (Kommune kommune : kommuneList) {
-            KommuneStatistik kr = new KommuneStatistik(kommune.getNavn());
+            KommuneStatistik kommuneStatistik = new KommuneStatistik(kommune.getNavn());
 
             for (Sogn sogn: kommune.getSogne()) {
-                kr.addToSamletIncidens(sogn.getIncidens());
+                kommuneStatistik.addToSamletIncidens(sogn.getIncidens());
             }
 
-            kr.calculateGennemsnitligIncidens(kommune.getSogne().size());
-            kommuner.add(kr);
+            kommuneStatistik.calculateGennemsnitligIncidens(kommune.getSogne().size());
+            kommuneStatistik.setAntalSogne(kommune.getSogne().size());
+            kommuner.add(kommuneStatistik);
 
         }
 
@@ -138,13 +139,24 @@ public class Dataservice {
         }
     }
 
-    public void closeSogn(String sogneNavn) {
+    public void lukSogn(String sogneNavn, LocalDate date) {
         Optional<Sogn> sognOptional = sognRepository.findSognByNavn(sogneNavn);
 
         if (sognOptional.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Sogn does not exists, could not delete.");
         } else {
-            sognOptional.get().setNedlukning(LocalDate.now());
+            sognOptional.get().setNedlukning(date);
+            sognRepository.save(sognOptional.get());
+        }
+    }
+
+    public void openSogn(String sogneNavn) {
+        Optional<Sogn> sognOptional = sognRepository.findSognByNavn(sogneNavn);
+
+        if (sognOptional.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Sogn does not exists, could not delete.");
+        } else {
+            sognOptional.get().setNedlukning(null);
             sognRepository.save(sognOptional.get());
         }
     }

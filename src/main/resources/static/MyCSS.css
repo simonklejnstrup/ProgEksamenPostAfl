@@ -1,5 +1,13 @@
 table {
-    font-family: arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: -1px;
+    word-spacing: 1.6px;
+    color: #000000;
+    font-weight: 400;
+    text-decoration: rgb(68, 68, 68);
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
     border-collapse: collapse;
     width: 100%;
 }
@@ -14,7 +22,24 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 
-.updateButton {
+h1, h2, h3, h4, h5, h6, p{
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: -1px;
+    word-spacing: 1.6px;
+    color: #000000;
+    font-weight: 400;
+    text-decoration: rgb(68, 68, 68);
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+}
+
+.topnav{
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.greenButton {
     box-shadow:inset 0px 1px 0px 0px #3dc21b;
     background:linear-gradient(to bottom, #44c767 5%, #5cbf2a 100%);
     background-color:#44c767;
@@ -30,16 +55,16 @@ tr:nth-child(even) {
     text-decoration:none;
     text-shadow:0px 1px 0px #2f6627;
 }
-.updateButton:hover {
+.greenButton:hover {
     background:linear-gradient(to bottom, #5cbf2a 5%, #44c767 100%);
     background-color:#5cbf2a;
 }
-.updateButton:active {
+.greenButton:active {
     position:relative;
     top:1px;
 }
 
-.deleteButton {
+.redButton {
     box-shadow:inset 0px 1px 0px 0px #f29c93;
     background:linear-gradient(to bottom, #fe1a00 5%, #ce0100 100%);
     background-color:#fe1a00;
@@ -55,14 +80,92 @@ tr:nth-child(even) {
     text-decoration:none;
     text-shadow:0px 1px 0px #b23e35;
 }
-.deleteButton:hover {
+.redButton:hover {
     background:linear-gradient(to bottom, #ce0100 5%, #fe1a00 100%);
     background-color:#ce0100;
 }
-.deleteButton:active {
+.redButton:active {
     position:relative;
     top:1px;
 }
+
+.blueButton {
+    box-shadow:inset 0px 1px 0px 0px #97c4fe;
+    background:linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
+    background-color:#3d94f6;
+    border-radius:6px;
+    border:1px solid #337fed;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 24px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #1570cd;
+}
+.blueButton:hover {
+    background:linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
+    background-color:#1e62d0;
+}
+.blueButton:active {
+    position:relative;
+    top:1px;
+}
+
+.backButton {
+    box-shadow: 0px 1px 0px 0px #fff6af;
+    background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+    background-color:#ffec64;
+    border-radius:6px;
+    border:1px solid #ffaa22;
+    display:inline-block;
+    cursor:pointer;
+    color:#333333;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 24px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #ffee66;
+}
+.backButton:hover {
+    background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+    background-color:#ffab23;
+}
+.backButton:active {
+    position:relative;
+    top:1px;
+}
+
+.openButton {
+    box-shadow:inset 0px 1px 0px 0px #fbafe3;
+    background:linear-gradient(to bottom, #ff5bb0 5%, #ef027d 100%);
+    background-color:#ff5bb0;
+    border-radius:6px;
+    border:1px solid #ee1eb5;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 24px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #c70067;
+}
+.openButton:hover {
+    background:linear-gradient(to bottom, #ef027d 5%, #ff5bb0 100%);
+    background-color:#ef027d;
+}
+.openButton:active {
+    position:relative;
+    top:1px;
+}
+
+
+
 
 .opretSogn{
     padding-bottom: 20px;

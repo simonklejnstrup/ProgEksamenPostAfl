@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+            <meta charset="UTF-8">
+            <title>Update</title>
+    <link rel="stylesheet" th:href="@{/MyCSS.css}" href="../static/MyCSS.css">
+
+</head>
+<body>
+<div class="topnav">
+    <a th:href="@{'/'}"class="backButton">←</a>
+</div>
+<h1>Luk Sogn ned</h1>
+<div th:object="${sogn}">
+
+    <h2 th:text="'Sogn: ' + ${navn}">Sogn Navn</h2>
+
+<form action="/lukned" method="post">
+    <div>
+        <input type="hidden" name="navn" th:value="${navn}">
+        <div>
+            <h4>Dato for nedlukning</h4>
+            <input class="input-field" type="date" name="date"  placeholder="Nedlukningsdato" required>
+        </div>
+            <p id="space"></p>
+            <div class="form-group">
+                <input type="submit" value="Luk sogn til valgte dato" class="blueButton" role="button">
+            </div>
+
+</form>
+
+</div>
+
+</body>
+</html></title>
+</head>
+<body>
+
+</body>
+</html>

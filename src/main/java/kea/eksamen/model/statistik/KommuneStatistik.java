@@ -5,6 +5,7 @@ public class KommuneStatistik {
     private String navn;
     private int samletIncidens;
     private double gennemsnitligIncidens;
+    private int antalSogne;
 
     public KommuneStatistik(String navn) {
         this.navn = navn;
@@ -44,5 +45,13 @@ public class KommuneStatistik {
 
     public void setGennemsnitligIncidens(double gennemsnitligIncidens) {
         this.gennemsnitligIncidens = gennemsnitligIncidens;
+    }
+
+    public int getAntalSogne() {
+        return antalSogne;
+    }
+
+    public void setAntalSogne(int antalSogne) {
+        this.antalSogne = antalSogne;
     }
 }

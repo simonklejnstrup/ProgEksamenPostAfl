@@ -1,23 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Sogne</title>
 
     <link rel="stylesheet" th:href="@{/MyCSS.css}" href="../static/MyCSS.css">
+    <link rel="stylesheet" th:href="@{/ForsideFormCSS.css}" href="../static/ForsideFormCSS.css">
+
 </head>
 <body>
 
-<div class="container">
-    <h1>Sogne</h1>
+<div style="text-align: right">
+    <a th:href="@{'/kommunestatistik'}"class="backButton">Se Kommunestatistik</a>
+</div>
+
+
+    <h1>Smittetryk & Nedlukninger</h1>
     <p></p>
 
     <h3>
         Opret sogn
     </h3>
     <form class="opretSogn" name="create" action="/create" method="post">
+        <input class="input-field" type="text" name="sogneNavn" placeholder="Sognenavn" required>
         <input class="input-field" type="number" name="sogneKode" placeholder="Sognekode" required>
-        <input class="input-field" type="text" name="sogneNavn" placeholder="Sogne navn" required>
         <input class="input-field" type="text" name="kommune" placeholder="Kommune navn" required>
         <input class="input-field" type="number" name="incidens" placeholder="Incidenstal" required>
         <input type="submit" class="btn btn-primary" value="Opret">
@@ -38,12 +45,16 @@
             <td th:text="${sogn.sogneKode}">sognekode</td>
             <td th:text="${sogn.kommune}">kommune </td>
             <td th:text="${sogn.incidens}">incidens</td>
-            <td th:text="${sogn.islukketned}">nedlukningsstatus</td>
+            <td th:text="${sogn.isLukketNed} ? 'Ja' : 'Nej'">nedlukningsstatus</td>
             <td th:text="${sogn.nedlukning}">dato for nedlukning</td>
             <td>
                 <div>
-                    <a th:href="@{'/update/' + ${sogn.navn}}"class="updateButton">Update</a>
-                    <a th:href="@{'/delete/' + ${sogn.navn}}" class="deleteButton">Delete</a>
+                    <a th:href="@{'/update/' + ${sogn.navn}}"class="greenButton">Update</a>
+                    <a th:href="@{'/lukned/' + ${sogn.navn}}" class="blueButton">Luk sogn ned</a>
+                    <a th:href="@{'/delete/' + ${sogn.navn}}" class="redButton">Delete</a>
+                    <a th:if="${sogn.isLukketNed()}" th:href="@{'/open/' + ${sogn.navn}}" class="openButton">Åbn sogn</a>
+
+
                 </div>
             </td>
         </tr>
@@ -53,7 +64,7 @@
 
 
 
-</div>
+
 
 
 

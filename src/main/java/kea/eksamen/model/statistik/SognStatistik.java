@@ -31,6 +31,7 @@ public class SognStatistik {
 
 
     public boolean isLukketNed() {
+
         return isLukketNed;
     }
 

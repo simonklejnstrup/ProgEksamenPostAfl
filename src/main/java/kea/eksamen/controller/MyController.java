@@ -29,6 +29,14 @@ public class MyController {
         return "index";
     }
 
+    @GetMapping("/kommunestatistik")
+    public String hentKommuneStatistik(Model model) {
+        model.addAttribute("kommuner", dataService.getAllKommuner());
+
+
+        return "kommunestatistik";
+    }
+
     @PostMapping("/create")
     public String opretSogn(WebRequest request) {
 
@@ -59,32 +67,45 @@ public class MyController {
 
         return "redirect:/";
 
-        //return "index";
     }
 
+    @RequestMapping(value = "/open/{navn}")
+    public String openSogn(@PathVariable String navn, Model model) {
+        Sogn sogn = dataService.findByName(navn);
+        dataService.openSogn(sogn.getNavn());
 
 
+        model.addAttribute("sogne", dataService.getAllSogne());
+        model.addAttribute("kommuner", dataService.getAllKommuner());
 
+        return "redirect:/";
 
+    }
 
+    @GetMapping("/lukned/{navn}")
+    public String lukSogn(@PathVariable("navn") String navn, Model model){
 
+        model.addAttribute("sogn", dataService.findByName(navn));
 
-    @PostMapping("/close")
+        return "lukned";
+    }
+
+    @PostMapping("/lukned")
     public String closeSogn(WebRequest request, Model model) {
-        String sogneNavn = request.getParameter("sogneNavn");
+        String sogneNavn = request.getParameter("navn");
+        LocalDate dato = LocalDate.parse(request.getParameter("date"));
 
-        dataService.closeSogn(sogneNavn);
+        dataService.lukSogn(sogneNavn, dato);
 
         model.addAttribute("sogne", dataService.getAllSogne());
         model.addAttribute("kommuner", dataService.getAllKommuner());
 
 
-        return "index";
+        return "redirect:/";
     }
 
     @GetMapping("/update/{navn}")
     public String updateSogn(@PathVariable("navn") String navn, Model model){
-        //System.out.println(dataService.findByName(navn).getSogneKode());
 
         model.addAttribute("sogn", dataService.findByName(navn));
 
@@ -106,7 +127,6 @@ public class MyController {
         model.addAttribute("kommuner", dataService.getAllKommuner());
 
         return "index";
-        //return "redirect:/";
     }
 
 

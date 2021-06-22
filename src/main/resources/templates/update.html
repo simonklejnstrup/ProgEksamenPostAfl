@@ -3,10 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Update</title>
+    <link rel="stylesheet" th:href="@{/MyCSS.css}" href="../static/MyCSS.css">
+    <link rel="stylesheet" th:href="@{/FormCSS.css}" href="../static/FormCSS.css">
+
+
 </head>
 <body>
+<div class="topnav">
+    <a th:href="@{'/'}"class="backButton">←</a>
+</div>
 <h1>Opdater Sogn</h1>
-
+<div class="container">
 <form action="/update" th:object="${sogn}" method="post">
     <div>
         <input type="hidden" name="id" th:value="${id}">
@@ -21,25 +28,17 @@
         <div>
         <label for="kommune">Kommune:</label>
         <input id="kommune"  type="text" name="kommune" th:field="*{kommune}" th:value="${kommune}">
-    </div>
-        <!--
-        <div>
-            <label for="nedlukning">Nedlukning: </label>
-            <input id="nedlukning"  type="date" name="nedlukning" th:field="*{nedlukning}" th:value="${nedlukning}">
-        </div>
-        -->
+
         <div>
             <label for="incidens">Incidens:</label>
             <input id="incidens"  type="text" name="incidens" th:field="*{incidens}" th:value="${incidens}">
         </div>
 
-
+            <div class="row">
+        <input type="submit" value="UPDATE" role="button">
     </div>
 
-    <p id="space"></p>
-    <div class="form-group">
-        <input type="submit" value="UPDATE" class="btn btn-success" role="button">
-    </div>
+        </div>
 </form>
 
 </body>
