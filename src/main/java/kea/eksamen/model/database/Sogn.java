@@ -20,6 +20,9 @@ public class Sogn {
     private Kommune kommune;
 
     private LocalDate nedlukning;
+
+    @Column(name = "islukketned")
+    private boolean isLukketNed;
     private int incidens;
 
     //Constructors
@@ -33,6 +36,7 @@ public class Sogn {
         this.kommune = kommune;
         this.nedlukning = nedlukning;
         this.incidens = incidens;
+        isLukketNed = false;
     }
 
     public Sogn(int sogneKode, String navn, Kommune kommune, int incidens) {
@@ -40,17 +44,23 @@ public class Sogn {
         this.navn = navn;
         this.kommune = kommune;
         this.incidens = incidens;
+        isLukketNed = false;
+
     }
 
     public Sogn(int sogneKode, String navn, Kommune kommune) {
         this.sogneKode = sogneKode;
         this.navn = navn;
         this.kommune = kommune;
+        isLukketNed = false;
+
     }
 
     public Sogn(int sogneKode, String navn) {
         this.sogneKode = sogneKode;
         this.navn = navn;
+        isLukketNed = false;
+
     }
 
 
@@ -80,6 +90,10 @@ public class Sogn {
         return incidens;
     }
 
+    public boolean isLukketNed() {
+        return isLukketNed;
+    }
+
     //Setters
 
     public void setId(Long id) {
@@ -104,6 +118,10 @@ public class Sogn {
 
     public void setIncidens(int incidens) {
         this.incidens = incidens;
+    }
+
+    public void setLukketNed(boolean lukketNed) {
+        isLukketNed = lukketNed;
     }
 
     @Override

@@ -15,7 +15,7 @@
     <h3>
         Opret sogn
     </h3>
-    <form name="create" action="/create" method="post">
+    <form class="opretSogn" name="create" action="/create" method="post">
         <input class="input-field" type="number" name="sogneKode" placeholder="Sognekode" required>
         <input class="input-field" type="text" name="sogneNavn" placeholder="Sogne navn" required>
         <input class="input-field" type="text" name="kommune" placeholder="Kommune navn" required>
@@ -29,6 +29,7 @@
             <th>Sognkode</th>
             <th>Kommune</th>
             <th>Smitteniveau</th>
+            <th>Lukket ned</th>
             <th>Dato for nedlukning</th>
             <th></th>
         </tr>
@@ -37,11 +38,12 @@
             <td th:text="${sogn.sogneKode}">sognekode</td>
             <td th:text="${sogn.kommune}">kommune </td>
             <td th:text="${sogn.incidens}">incidens</td>
-            <td th:text="${sogn.nedlukning}">incidens</td>
+            <td th:text="${sogn.islukketned}">nedlukningsstatus</td>
+            <td th:text="${sogn.nedlukning}">dato for nedlukning</td>
             <td>
-                <div class="btn-group">
-                    <a th:href="@{'/update/' + ${sogn.navn}}"class="btn btn-warning">Update</a>
-                    <a th:href="@{'/delete/' + ${sogn.navn}}" class="btn btn-danger">Delete</a>
+                <div>
+                    <a th:href="@{'/update/' + ${sogn.navn}}"class="updateButton">Update</a>
+                    <a th:href="@{'/delete/' + ${sogn.navn}}" class="deleteButton">Delete</a>
                 </div>
             </td>
         </tr>

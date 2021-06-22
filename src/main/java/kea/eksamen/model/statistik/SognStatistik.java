@@ -9,7 +9,7 @@ public class SognStatistik {
     private int incidens;
     private LocalDate nedlukning;
     private String kommune;
-    private boolean erNedlukket;
+    private boolean isLukketNed;
 
     public SognStatistik(int sogneKode, String navn, int incidens, LocalDate nedlukning,  String kommune) {
         this.sogneKode = sogneKode;
@@ -20,21 +20,22 @@ public class SognStatistik {
 
         if(nedlukning != null) {
             if (LocalDate.now().isAfter(nedlukning) || LocalDate.now().isEqual(nedlukning)) {
-                erNedlukket = true;
+                isLukketNed = true;
             } else {
-                erNedlukket = false;
+                isLukketNed = false;
             }
         }
 
 
     }
 
-    public boolean isErNedlukket() {
-        return erNedlukket;
+
+    public boolean isLukketNed() {
+        return isLukketNed;
     }
 
-    public void setErNedlukket(boolean erNedlukket) {
-        this.erNedlukket = erNedlukket;
+    public void setIsLukketNed(boolean isLukketNed) {
+        this.isLukketNed = isLukketNed;
     }
 
     public int getSogneKode() {

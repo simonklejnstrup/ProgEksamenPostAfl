@@ -46,19 +46,24 @@ public class MyController {
 
 
 
-    @DeleteMapping(value = "/delete/{navn}")
+    @RequestMapping(value = "/delete/{navn}")
     public String deleteSogn(@PathVariable String navn, Model model) {
         Sogn sogn = dataService.findByName(navn);
         sogn.setKommune(null);
-        dataService.updateSogn(sogn.getSogneKode(), sogn.getKommune(), sogn.getNavn(), sogn.getIncidens());
+        dataService.updateSogn(sogn.getSogneKode(), null, sogn.getNavn(), sogn.getIncidens());
 
         dataService.deleteSogn(navn);
 
         model.addAttribute("sogne", dataService.getAllSogne());
         model.addAttribute("kommuner", dataService.getAllKommuner());
 
-        return "index";
+        return "redirect:/";
+
+        //return "index";
     }
+
+
+
 
 
 

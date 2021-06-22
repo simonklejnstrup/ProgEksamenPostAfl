@@ -88,11 +88,13 @@ public class Dataservice {
         if (sognOptional.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Sogn does not exist.");
         } else {
-            for (Kommune k : kommuneRepository.findAll()) {
-                if (k.getNavn().toLowerCase().equals(kommune.getNavn().toLowerCase())) {
-                    Kommune kommune1 = kommuneRepository.findById(k.getId()).get();
-                    kommuneRepository.save(kommune1);
-                    sognOptional.get().setKommune(kommune1);
+            if (kommune != null) {
+                for (Kommune k : kommuneRepository.findAll()) {
+                    if (k.getNavn().toLowerCase().equals(kommune.getNavn().toLowerCase())) {
+                        Kommune kommune1 = kommuneRepository.findById(k.getId()).get();
+                        kommuneRepository.save(kommune1);
+                        sognOptional.get().setKommune(kommune1);
+                    }
                 }
             }
 
@@ -102,13 +104,25 @@ public class Dataservice {
 
             sognRepository.save(sognOptional.get());
 
-            return new SognStatistik(
-                    sognOptional.get().getSogneKode(),
-                    sognOptional.get().getNavn(),
-                    sognOptional.get().getIncidens(),
-                    sognOptional.get().getNedlukning(),
-                    sognOptional.get().getKommune().getNavn()
-            );
+
+            if (kommune != null) {
+                return new SognStatistik(
+                        sognOptional.get().getSogneKode(),
+                        sognOptional.get().getNavn(),
+                        sognOptional.get().getIncidens(),
+                        sognOptional.get().getNedlukning(),
+                        sognOptional.get().getKommune().getNavn()
+                );
+            } else {
+                return new SognStatistik(
+                        sognOptional.get().getSogneKode(),
+                        sognOptional.get().getNavn(),
+                        sognOptional.get().getIncidens(),
+                        sognOptional.get().getNedlukning(),
+                        null
+                );
+
+            }
         }
     }
 
