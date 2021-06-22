@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Update</title>
+</head>
+<body>
+<h1>Opdater Sogn</h1>
+
+<form action="/update" th:object="${sogn}" method="post">
+    <div>
+        <input type="hidden" name="id" th:value="${id}">
+        <div>
+        <label for="navn">Navn:</label>
+        <input id="navn"  type="text" name="navn" th:field="*{navn}" th:value="${navn}">
+        </div>
+        <div>
+        <label for="sognekode">Sognekode:</label>
+        <input id="sognekode"  type="number" name="sogneKode" th:field="*{sogneKode}"  th:value="${sogneKode}">
+        </div>
+        <div>
+        <label for="kommune">Kommune:</label>
+        <input id="kommune"  type="text" name="kommune" th:field="*{kommune}" th:value="${kommune}">
+    </div>
+        <!--
+        <div>
+            <label for="nedlukning">Nedlukning: </label>
+            <input id="nedlukning"  type="date" name="nedlukning" th:field="*{nedlukning}" th:value="${nedlukning}">
+        </div>
+        -->
+        <div>
+            <label for="incidens">Incidens:</label>
+            <input id="incidens"  type="text" name="incidens" th:field="*{incidens}" th:value="${incidens}">
+        </div>
+
+
+    </div>
+
+    <p id="space"></p>
+    <div class="form-group">
+        <input type="submit" value="UPDATE" class="btn btn-success" role="button">
+    </div>
+</form>
+
+</body>
+</html>
